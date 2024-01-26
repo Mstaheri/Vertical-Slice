@@ -1,29 +1,42 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using SimpleBlog.Infrastructure;
 using System.Data;
 
 namespace SimpleBlog.Features.Posts.GetPostByIds;
 public class AppService
 {
-    private readonly BlogDbContext _connection;
+    private readonly BlogDbContext _dbContext;
 
     public AppService(
-        BlogDbContext connection)
+        BlogDbContext dbContext)
 	{
-		_connection = connection;
+        _dbContext = dbContext;
 	}
 
-	public async Task<Response> Handler(string title)
+	public async Task<OperationResult<Response>> GetPostAsync(string title)
 	{
+		try
+		{
+            var post = await _dbContext.Posts.Where(p => p.Title == title).SingleAsync();
+			return new OperationResult<Response>
+			{
+				Success = true,
+				data = new Response
+				{
+					Id = post.Id,
+					Title = post.Title,
+					Content = post.Content,
+				}
+                
+            };
+        }
+		catch (Exception)
+		{
+			return new OperationResult<Response> { Success = false };
+		}
 		//return await _connection.QueryFirstAsync<Response>(
 		//	"SELECT Id, Title, Content FROM Posts");
-		var post = await _connection.Posts.FindAsync(title)
-			?? throw new Exception("Not Found");
-		return new Response
-		{
-			Id = post.Id,
-			Title = post.Title,
-			Content = post.Content,
-		};
+		
 	}
 }

@@ -6,10 +6,7 @@ public class Validator : AbstractValidator<Input>
 {
 	public Validator()
 	{
-		RuleFor(input => input.Title)
-			.Length(3, 10)
-			.WithMessage("")
-			.NotEmpty()
-			.WithMessage("");
+		RuleFor(p => p.Title)
+			.NotEmpty();
 	}
 }

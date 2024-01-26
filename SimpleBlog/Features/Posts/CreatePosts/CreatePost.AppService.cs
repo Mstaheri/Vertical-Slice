@@ -12,18 +12,18 @@ public class AppService
     {
         _dbContext = dbContext;
     }
-    public async Task<Guid> CreatePostAsync(Input input)
+    public async Task<OperationResult> CreatePostAsync(Input input)
     {
         try
         {
             var post = new Post(input.Title, input.Content);
             await _dbContext.Posts.AddAsync(post);
             await _dbContext.SaveChangesAsync();
-            return post.Id;
+            return new OperationResult { Success = true };
         }
         catch
         {
-            throw new Exception("eror");
+            return new OperationResult { Success = false };
         }
         
     }

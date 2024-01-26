@@ -15,7 +15,8 @@ namespace SimpleBlog.Infrastructure.Config
         {
             builder.HasMany(p => p.Comments)
                 .WithOne(p => p.Posts)
-                .HasForeignKey(p => p.IdPost);
+                .HasForeignKey(p => p.IdPost)
+                .OnDelete(DeleteBehavior.Cascade);
             
         }
     }
