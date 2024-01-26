@@ -4,15 +4,15 @@ using SimpleBlog.Infrastructure;
 
 namespace SimpleBlog.Features.Posts.CreatePosts;
 
-public class AppService
+public class AppServicePostCreate
 {
     private readonly BlogDbContext _dbContext;
 
-    public AppService(BlogDbContext dbContext)
+    public AppServicePostCreate(BlogDbContext dbContext)
     {
         _dbContext = dbContext;
     }
-    public async Task<OperationResult> CreatePostAsync(Input input)
+    public async Task<OperationResult> CreatePostAsync(InputPostCreate input)
     {
         try
         {

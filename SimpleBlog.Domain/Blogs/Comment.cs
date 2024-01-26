@@ -2,11 +2,12 @@
 
 public class Comment
 {
-    public Comment(string name, string text)
+    public Comment(string name, string text , Guid idPost)
     {
         Id = Guid.NewGuid();
         Name = name;
         Text = text;
+        IdPost = idPost;
     }
     public Guid Id { get; private set; }
     public Guid IdPost { get; private set; }

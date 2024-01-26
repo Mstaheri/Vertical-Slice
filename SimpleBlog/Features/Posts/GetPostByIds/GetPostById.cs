@@ -6,9 +6,9 @@ namespace SimpleBlog.Features.Posts.GetPostByIds;
 [Route("api/posts")]
 public class GetPostById : ControllerBase
 {
-    private readonly AppService _appService;
+    private readonly AppServiceGetPostByIds _appService;
 
-    public GetPostById(AppService appService)
+    public GetPostById(AppServiceGetPostByIds appService)
     {
         _appService = appService;
     }

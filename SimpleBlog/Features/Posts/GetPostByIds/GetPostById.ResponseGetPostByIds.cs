@@ -1,6 +1,6 @@
 ﻿namespace SimpleBlog.Features.Posts.GetPostByIds;
 
-public record Response
+public record ResponseGetPostByIds
 {
     public Guid Id { get; init; }
     public string Title { get; init; } = default!;

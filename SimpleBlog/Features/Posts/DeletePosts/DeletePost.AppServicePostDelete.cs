@@ -3,10 +3,10 @@ using SimpleBlog.Infrastructure;
 
 namespace SimpleBlog.Features.Posts.DeletePosts
 {
-    public class AppService
+    public class AppServicePostDelete
     {
         private readonly BlogDbContext _dbContext;
-        public AppService(BlogDbContext dbContext)
+        public AppServicePostDelete(BlogDbContext dbContext)
         {
             _dbContext = dbContext;
         }

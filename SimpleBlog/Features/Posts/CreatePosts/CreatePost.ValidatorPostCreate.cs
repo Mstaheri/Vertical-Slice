@@ -2,9 +2,9 @@
 
 namespace SimpleBlog.Features.Posts.CreatePosts;
 
-public class Validator : AbstractValidator<Input>
+public class ValidatorPostCreate : AbstractValidator<InputPostCreate>
 {
-	public Validator()
+	public ValidatorPostCreate()
 	{
 		RuleFor(p => p.Title)
 			.NotEmpty();

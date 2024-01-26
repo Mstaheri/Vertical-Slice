@@ -7,19 +7,19 @@ namespace SimpleBlog.Features.Posts.CreatePosts;
 [Route("api/posts")]
 public class CreatePost : ControllerBase
 {
-    private readonly AppService _createPostAppService;
-    private readonly IValidator<Input> _validator;
+    private readonly AppServicePostCreate _createPostAppService;
+    private readonly IValidator<InputPostCreate> _validator;
 
     public CreatePost(
-        AppService createPostAppService,
-        IValidator<Input> validator)
+        AppServicePostCreate createPostAppService,
+        IValidator<InputPostCreate> validator)
     {
         _createPostAppService = createPostAppService;
         _validator = validator;
 
     }
     [HttpPost]
-    public async Task<ActionResult> Handler([FromBody] Input input)
+    public async Task<ActionResult> Handler([FromBody] InputPostCreate input)
     {
         var validationResult = _validator.Validate(input);
         if (!validationResult.IsValid)

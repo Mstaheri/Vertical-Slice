@@ -19,10 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Comments\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SimpleBlog.Domain\SimpleBlog.Domain.csproj" />
     <ProjectReference Include="..\SimpleBlog.Infrastructure\SimpleBlog.Infrastructure.csproj" />
   </ItemGroup>

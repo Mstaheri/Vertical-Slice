@@ -8,8 +8,8 @@ namespace SimpleBlog.Features.Posts.DeletePost
     [Route("api/posts")]
     public class DeletePost : ControllerBase
     {
-        private readonly AppService _appService;
-        public DeletePost(AppService appService)
+        private readonly AppServicePostDelete _appService;
+        public DeletePost(AppServicePostDelete appService)
         {
             _appService = appService;
         }

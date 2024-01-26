@@ -2,9 +2,9 @@
 
 namespace SimpleBlog.Features.Posts.EditPosts
 {
-    public class Validator : AbstractValidator<Input>
+    public class ValidatorPostEdit : AbstractValidator<InputPostEdit>
     {
-        public Validator()
+        public ValidatorPostEdit()
         {
 
         }

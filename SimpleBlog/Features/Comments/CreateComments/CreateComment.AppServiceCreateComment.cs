@@ -1,23 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using SimpleBlog.Domain.Blogs;
 using SimpleBlog.Infrastructure;
 
-namespace SimpleBlog.Features.Posts.EditPosts
+namespace SimpleBlog.Features.Comments.CreateComments
 {
-    public class AppService
+    public class AppServiceCreateComment
     {
         private readonly BlogDbContext _dbContext;
-        public AppService(BlogDbContext dbContext)
+        public AppServiceCreateComment(BlogDbContext dbContext)
         {
-            _dbContext= dbContext;
+            _dbContext = dbContext;
         }
-        public async Task<OperationResult> EditPostAsync(Input input)
+        public async Task<OperationResult> CreateCommentAsync(InputCreateComment input)
         {
             try
             {
-                var query = await _dbContext.Posts.Where(p => p.Id == input.Id).SingleAsync();
-                query.Edit(input.Title, input.Content);
-                _dbContext.SaveChanges();
+                var Comment = new Comment(input.Name, input.Text, input.IdPost);
+                await _dbContext.AddAsync(Comment);
+                await _dbContext.SaveChangesAsync();
                 return new OperationResult
                 {
                     Success = true,
@@ -32,6 +32,5 @@ namespace SimpleBlog.Features.Posts.EditPosts
             }
             
         }
-
     }
 }
