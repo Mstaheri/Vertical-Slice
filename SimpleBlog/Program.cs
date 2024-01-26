@@ -9,6 +9,7 @@ using Swashbuckle.Swagger;
 using SimpleBlog.Features.Posts.EditPosts;
 using SimpleBlog.Features.Posts.DeletePosts;
 using SimpleBlog.Features.Comments.CreateComments;
+using SimpleBlog.Features.Comments.EditComment;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,9 @@ builder.Services.AddScoped<AppServicePostDelete>();
 //CreateComments
 builder.Services.AddScoped<AppServiceCreateComment>();
 builder.Services.AddScoped<IValidator<InputCreateComment>, ValidatorCreateComment>();
+//EditComment
+builder.Services.AddScoped<AppServiceEditComment>();
+builder.Services.AddScoped<IValidator<InputEditComment>, ValidatorEditComment>();
 
 var app = builder.Build();
 
@@ -43,9 +47,18 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 
-    
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+
+
 }
 
 app.UseHttpsRedirection();

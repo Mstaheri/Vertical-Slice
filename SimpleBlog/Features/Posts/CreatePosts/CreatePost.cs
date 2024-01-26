@@ -26,7 +26,7 @@ public class CreatePost : ControllerBase
         {
             return BadRequest(validationResult.ToDictionary());
         }
-        await _createPostAppService.CreatePostAsync(input);
-        return Ok();
+        var result = await _createPostAppService.CreatePostAsync(input);
+        return Ok(result.Success);
     }
 }

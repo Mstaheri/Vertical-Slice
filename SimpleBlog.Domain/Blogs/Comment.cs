@@ -1,4 +1,7 @@
-﻿namespace SimpleBlog.Domain.Blogs;
+﻿using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+
+namespace SimpleBlog.Domain.Blogs;
 
 public class Comment
 {
@@ -8,6 +11,11 @@ public class Comment
         Name = name;
         Text = text;
         IdPost = idPost;
+    }
+    public void Edit(string name , string text)
+    {
+        Name = name;
+        Text = text;
     }
     public Guid Id { get; private set; }
     public Guid IdPost { get; private set; }
