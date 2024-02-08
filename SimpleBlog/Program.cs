@@ -10,6 +10,12 @@ using SimpleBlog.Features.Posts.EditPosts;
 using SimpleBlog.Features.Posts.DeletePosts;
 using SimpleBlog.Features.Comments.CreateComments;
 using SimpleBlog.Features.Comments.EditComment;
+using MediatR;
+using SimpleBlog.Features.Comments.GetComments;
+using System.Net.NetworkInformation;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +46,13 @@ builder.Services.AddScoped<IValidator<InputCreateComment>, ValidatorCreateCommen
 //EditComment
 builder.Services.AddScoped<AppServiceEditComment>();
 builder.Services.AddScoped<IValidator<InputEditComment>, ValidatorEditComment>();
+//GetComment
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+builder.Services.AddScoped<IDbConnection>(c => new SqlConnection(connection));
+
 
 var app = builder.Build();
 

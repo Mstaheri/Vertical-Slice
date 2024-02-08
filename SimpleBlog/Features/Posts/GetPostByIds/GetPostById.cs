@@ -12,7 +12,7 @@ public class GetPostById : ControllerBase
     {
         _appService = appService;
     }
-    [HttpGet("/{title}")]
+    [HttpGet("{title}")]
     public async Task<ActionResult> Handler([FromRoute] string title)
     {
         return Ok(await _appService.GetPostAsync(title));

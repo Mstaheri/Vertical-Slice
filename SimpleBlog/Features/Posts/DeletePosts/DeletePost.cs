@@ -14,7 +14,7 @@ namespace SimpleBlog.Features.Posts.DeletePost
             _appService = appService;
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Handler(Guid id)
         {
             var result = await _appService.DeletePostAsync(id);
