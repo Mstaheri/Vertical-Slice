@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimpleBlog.Features.DeleteComments;
 
-namespace SimpleBlog.Features.DeleteComments
+namespace SimpleBlog.Features.Comments.DeleteComments
 {
     [ApiController]
     [Route("api/Comments")]
@@ -20,7 +21,7 @@ namespace SimpleBlog.Features.DeleteComments
             try
             {
                 var command = new DeleteCommentCommand
-                { id= id };
+                { id = id };
                 await _mediator.Send(command);
                 _logger.LogInformation("Delete Comment Successfully");
                 return Ok();
@@ -30,7 +31,7 @@ namespace SimpleBlog.Features.DeleteComments
                 _logger.LogError("Eror DeleteComment Handler");
                 return BadRequest(ex.Message);
             }
-            
+
         }
     }
 }
